@@ -52,7 +52,9 @@ public class FacebookShareDialogFragment extends DialogFragment {
     public CallbackManager callbackManager;
 
     public static FacebookShareDialogFragment newInstance(final Payload payload) {
-        if (payload == null) {throw new IllegalArgumentException("payload can't be null");}
+        if (payload == null) {
+            throw new IllegalArgumentException("payload can't be null");
+        }
 
         final FacebookShareDialogFragment fragment = new FacebookShareDialogFragment();
         final Bundle arguments = new Bundle();
@@ -148,8 +150,8 @@ public class FacebookShareDialogFragment extends DialogFragment {
         final Fragment fragment = manager.findFragmentByTag(FRAGMENT_TAG);
         if (fragment != null) {
             manager.beginTransaction()
-                   .remove(fragment)
-                   .commit();
+                    .remove(fragment)
+                    .commit();
             manager.executePendingTransactions();
         }
         super.show(manager, tag != null ? tag : FRAGMENT_TAG);
@@ -159,9 +161,6 @@ public class FacebookShareDialogFragment extends DialogFragment {
     public int show(final FragmentTransaction transaction, final String tag) {
         return super.show(transaction, tag != null ? tag : FRAGMENT_TAG);
     }
-
-
-
 
 
     public static final class Payload implements id.atumdev.applib.socialmedia.models.Payload {

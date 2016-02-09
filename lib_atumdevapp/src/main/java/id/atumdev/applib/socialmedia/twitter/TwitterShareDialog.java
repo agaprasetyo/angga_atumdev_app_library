@@ -29,7 +29,8 @@ public class TwitterShareDialog extends DialogFragment {
     private Payload payload;
     public AccessToken accessToken4j;
 
-    public TwitterShareDialog (){}
+    public TwitterShareDialog() {
+    }
 
     public static TwitterShareDialog newInstance(Payload payload) {
         if (payload == null) {
@@ -106,7 +107,7 @@ public class TwitterShareDialog extends DialogFragment {
         PreferenceUtils.saveTwitterAccessToken(context, null);
     }
 
-    public static final class Payload implements id.atumdev.applib.socialmedia.models.Payload{
+    public static final class Payload implements id.atumdev.applib.socialmedia.models.Payload {
         private String message;
         private String link;
 
@@ -129,7 +130,9 @@ public class TwitterShareDialog extends DialogFragment {
         public String getStatus() {
             StringBuilder builder = new StringBuilder();
             builder.append(message);
-            if (!TextUtils.isEmpty(message)) { builder.append(" "); }
+            if (!TextUtils.isEmpty(message)) {
+                builder.append(" ");
+            }
             builder.append(link);
 
             return builder.toString();

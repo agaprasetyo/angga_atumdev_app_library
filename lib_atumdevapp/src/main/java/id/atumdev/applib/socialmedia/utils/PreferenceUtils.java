@@ -35,7 +35,7 @@ public class PreferenceUtils {
 
     public static AccessToken restoreTwitterAccessToken(final Context context) {
         Log.d("TEST_PREFERENCE", "restore");
-        if  (context != null) {
+        if (context != null) {
             final SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_TAG, Context.MODE_PRIVATE);
             final String token = preferences.getString(KEY_TAG, null);
             final String secretToken = preferences.getString(SECRET_KEY_TAG, null);

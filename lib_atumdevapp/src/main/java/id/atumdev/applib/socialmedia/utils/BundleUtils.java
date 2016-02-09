@@ -8,6 +8,7 @@ import id.atumdev.applib.socialmedia.models.Payload;
 public class BundleUtils {
     private static final String TOKEN_CUSTOMER_KEY = "auth_customer_token";
     private static final String TOKEN_CUSTOMER_SECRET_KEY = "auth_customer_secret_token";
+
     private BundleUtils() {
         throw new UnsupportedOperationException();
     }

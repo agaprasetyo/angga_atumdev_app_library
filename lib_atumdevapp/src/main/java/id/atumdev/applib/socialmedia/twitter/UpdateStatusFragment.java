@@ -196,7 +196,8 @@ public class UpdateStatusFragment extends Fragment {
                     try {
                         twitter.setOAuthConsumer(consumerKey, consumerSecretKey);
                         twitter.setOAuthAccessToken(accessToken4j);
-                    } catch (Exception ignore) {}
+                    } catch (Exception ignore) {
+                    }
                 }
 
                 twitter.updateStatus(message);

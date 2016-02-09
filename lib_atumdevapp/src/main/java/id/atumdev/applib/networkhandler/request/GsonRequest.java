@@ -1,6 +1,5 @@
 package id.atumdev.applib.networkhandler.request;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -14,9 +13,6 @@ import com.google.gson.JsonSyntaxException;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
-import java.util.Objects;
-
-import id.atumdev.applib.devoptions.datastore.DomainDataStore;
 
 /**
  * Created by ANGGA PRASETIYO on 9/26/2015.

@@ -13,12 +13,10 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
-import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
@@ -39,7 +37,7 @@ public class GsonMutipartRequest<T> extends Request<T> {
     private Class<T> clazz;
     private Gson mGson = new Gson();
 
-    public GsonMutipartRequest(String url, @NonNull ParamMultipart paramMultipart, Class<T> clazz, Response.Listener<T> listener, Response.ErrorListener errorListener){
+    public GsonMutipartRequest(String url, @NonNull ParamMultipart paramMultipart, Class<T> clazz, Response.Listener<T> listener, Response.ErrorListener errorListener) {
         super(Method.POST, url, errorListener);
         this.mListener = listener;
         this.paramMultipart = paramMultipart;
@@ -66,19 +64,19 @@ public class GsonMutipartRequest<T> extends Request<T> {
         return paramMultipart.getOtherParams();
     }
 
-    private void buildMultipartEntity(){
+    private void buildMultipartEntity() {
         mBuilder.addBinaryBody(paramMultipart.getParamFile(), paramMultipart.getFile(), paramMultipart.getContentType(), paramMultipart.getFile().getName());
         mBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
         mBuilder.setLaxMode().setBoundary("xx").setCharset(Charset.forName("UTF-8"));
     }
 
     @Override
-    public String getBodyContentType(){
+    public String getBodyContentType() {
         return mBuilder.build().getContentType().getValue();
     }
 
     @Override
-    public byte[] getBody() throws AuthFailureError{
+    public byte[] getBody() throws AuthFailureError {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         try {
             mBuilder.build().writeTo(bos);

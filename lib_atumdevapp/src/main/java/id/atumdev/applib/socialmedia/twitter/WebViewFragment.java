@@ -52,7 +52,8 @@ public class WebViewFragment extends Fragment {
     private TwitterShareDialog.Payload payload;
     private Subscription registration;
 
-    public WebViewFragment() {}
+    public WebViewFragment() {
+    }
 
     public static WebViewFragment newInstance(final String consumerKey, final String consumerSecretKey, TwitterShareDialog.Payload payload) {
         WebViewFragment fragment = new WebViewFragment();
@@ -84,8 +85,8 @@ public class WebViewFragment extends Fragment {
         final WindowManager wm = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
         final Display display = wm.getDefaultDisplay();
         final ViewGroup.LayoutParams params = rootView.getLayoutParams();
-        params.width = (int) (0.8*display.getWidth());
-        params.height =(int) (0.8*display.getHeight());
+        params.width = (int) (0.8 * display.getWidth());
+        params.height = (int) (0.8 * display.getHeight());
 
         rootView.setLayoutParams(params);
 
@@ -194,7 +195,7 @@ public class WebViewFragment extends Fragment {
                     } catch (OnErrorNotImplementedException ignore) {
 
                     }
-            }
+                }
             }.start();
         }
     });

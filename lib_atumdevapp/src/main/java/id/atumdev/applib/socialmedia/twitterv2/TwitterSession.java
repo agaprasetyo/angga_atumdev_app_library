@@ -20,9 +20,9 @@ public class TwitterSession {
     private static final String SHARED_TWITTER_LOGIN = "SHARED_TWITTER_LOGIN";
 
     public TwitterSession(Context context) {
-        sharedPref 	  = context.getSharedPreferences(SHARED_TWITTER_LOGIN, Context.MODE_PRIVATE);
+        sharedPref = context.getSharedPreferences(SHARED_TWITTER_LOGIN, Context.MODE_PRIVATE);
 
-        editor 		  = sharedPref.edit();
+        editor = sharedPref.edit();
     }
 
     public void storeAccessToken(AccessToken accessToken, String username) {
@@ -46,8 +46,8 @@ public class TwitterSession {
     }
 
     public AccessToken getAccessToken() {
-        String token 		= sharedPref.getString(TWEET_AUTH_KEY, null);
-        String tokenSecret 	= sharedPref.getString(TWEET_AUTH_SECRET_KEY, null);
+        String token = sharedPref.getString(TWEET_AUTH_KEY, null);
+        String tokenSecret = sharedPref.getString(TWEET_AUTH_SECRET_KEY, null);
 
         if (token != null && tokenSecret != null)
             return new AccessToken(token, tokenSecret);
