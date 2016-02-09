@@ -1,0 +1,1 @@
+include ':sample_app_testing', ':lib_atumdevapp'

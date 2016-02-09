@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/angga_atumdev_app_library.iml" filepath="$PROJECT_DIR$/angga_atumdev_app_library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib_atumdevapp/lib_atumdevapp.iml" filepath="$PROJECT_DIR$/lib_atumdevapp/lib_atumdevapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample_app_testing/sample_app_testing.iml" filepath="$PROJECT_DIR$/sample_app_testing/sample_app_testing.iml" />
+    </modules>
+  </component>
+</project>

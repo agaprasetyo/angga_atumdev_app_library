@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">lib_atumdevapp</string>
+    <string name="title_activity_simple_dev_option">SimpleDevOptionActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="copyright_devoption">Developer Options\nCopyright&#169;2015 Angga Prasetiyo</string>
+    <string name="title_activity_domain_dev_option">DomainDevOptionActivity</string>
+
+    <string name="send_button_text">Send</string>
+</resources>
