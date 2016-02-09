@@ -58,14 +58,17 @@ public class TwitterShareDialog extends DialogFragment {
         consumerSecretKey = MetadataUtils.getMetaString(getActivity(), NAME_CONSUMER_SECRET_KEY);
 
         if (TextUtils.isEmpty(consumerKey) || TextUtils.isEmpty(consumerSecretKey)) {
-            throw new RuntimeException("consumerKey and consumerSecretKey must be set in <meta-data> in AndroidManifest.xml");
+            throw new RuntimeException("consumerKey and consumerSecretKey " +
+                    "must be set in <meta-data> in AndroidManifest.xml");
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        final View rootView = inflater.inflate(R.layout.twitter_share_dialog_layout, container, false);
+        final View rootView = inflater.inflate(R.layout.twitter_share_dialog_layout,
+                container, false);
         accessToken4j = PreferenceUtils.restoreTwitterAccessToken(getActivity());
         return rootView;
     }
@@ -76,10 +79,12 @@ public class TwitterShareDialog extends DialogFragment {
         if (savedInstanceState == null) {
             FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
             if (accessToken4j == null) {
-                final Fragment fragment = WebViewFragment.newInstance(consumerKey, consumerSecretKey, payload);
+                final Fragment fragment = WebViewFragment.newInstance(consumerKey,
+                        consumerSecretKey, payload);
                 fragmentTransaction.add(R.id.fragment_container, fragment);
             } else {
-                final Fragment fragment = UpdateStatusFragment.newInstance(consumerKey, consumerSecretKey, payload);
+                final Fragment fragment = UpdateStatusFragment.newInstance(consumerKey,
+                        consumerSecretKey, payload);
                 fragmentTransaction.add(R.id.fragment_container, fragment);
             }
             fragmentTransaction.commit();

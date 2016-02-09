@@ -13,7 +13,9 @@ public class ActionTwitterShare {
     private final TwitterApp twitterApp;
     private final TweetStatusListener tweetStatusListener;
 
-    public ActionTwitterShare(Activity activity, String consumerKey, String consumerSecretKey, TwitterApp.TwDialogListener dialogListener, TweetStatusListener tweetStatusListener) {
+    public ActionTwitterShare(Activity activity, String consumerKey, String consumerSecretKey,
+                              TwitterApp.TwDialogListener dialogListener,
+                              TweetStatusListener tweetStatusListener) {
         this.activity = activity;
         this.tweetStatusListener = tweetStatusListener;
         twitterApp = new TwitterApp(activity, consumerKey, consumerSecretKey);

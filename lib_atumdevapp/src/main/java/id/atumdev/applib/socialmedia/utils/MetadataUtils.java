@@ -11,9 +11,9 @@ public class MetadataUtils {
 
     public static String getMetaString(final Context context, final String name) {
         try {
-            ApplicationInfo ai = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
-            final String value = ai.metaData.getString(name);
-            return value;
+            ApplicationInfo ai = context.getPackageManager()
+                    .getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
+            return ai.metaData.getString(name);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }

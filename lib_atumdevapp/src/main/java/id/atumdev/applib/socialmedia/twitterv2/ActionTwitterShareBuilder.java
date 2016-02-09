@@ -32,17 +32,18 @@ public class ActionTwitterShareBuilder {
         return this;
     }
 
-    public ActionTwitterShareBuilder setDialogListener(TwitterApp.TwDialogListener dialogListener) {
-        this.dialogListener = dialogListener;
+    public ActionTwitterShareBuilder setDialogListener(TwitterApp.TwDialogListener listener) {
+        this.dialogListener = listener;
         return this;
     }
 
-    public ActionTwitterShareBuilder setTweetStatusListener(TweetStatusListener tweetStatusListener) {
-        this.tweetStatusListener = tweetStatusListener;
+    public ActionTwitterShareBuilder setTweetStatusListener(TweetStatusListener listener) {
+        this.tweetStatusListener = listener;
         return this;
     }
 
     public ActionTwitterShare build() {
-        return new ActionTwitterShare(this.activity, this.consumerKey, this.consumerSecretKey, this.dialogListener, this.tweetStatusListener);
+        return new ActionTwitterShare(this.activity, this.consumerKey, this.consumerSecretKey,
+                this.dialogListener, this.tweetStatusListener);
     }
 }

@@ -27,8 +27,9 @@ import android.widget.TextView;
  * Created by ANGGA PRASETIYO on 9/30/2015.
  */
 public class TwitterDialog extends Dialog {
-    static final FrameLayout.LayoutParams FILL = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT);
+    static final FrameLayout.LayoutParams FILL =
+            new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT);
     static final int MARGIN = 4;
     static final int PADDING = 2;
 
@@ -91,7 +92,8 @@ public class TwitterDialog extends Dialog {
             dimensions[1] = 0.75 * height;
         }
 
-        addContentView(mContent, new FrameLayout.LayoutParams((int) dimensions[0], (int) dimensions[1]));
+        addContentView(mContent, new FrameLayout.LayoutParams((int) dimensions[0],
+                (int) dimensions[1]));
     }
 
     private void setUpTitle() {
@@ -148,7 +150,8 @@ public class TwitterDialog extends Dialog {
         }
 
         @Override
-        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+        public void onReceivedError(WebView view, int errorCode, String description,
+                                    String failingUrl) {
             Log.d(TAG, "Page error: " + description);
 
             super.onReceivedError(view, errorCode, description, failingUrl);

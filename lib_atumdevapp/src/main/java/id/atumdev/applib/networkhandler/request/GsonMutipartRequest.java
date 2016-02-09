@@ -37,7 +37,9 @@ public class GsonMutipartRequest<T> extends Request<T> {
     private Class<T> clazz;
     private Gson mGson = new Gson();
 
-    public GsonMutipartRequest(String url, @NonNull ParamMultipart paramMultipart, Class<T> clazz, Response.Listener<T> listener, Response.ErrorListener errorListener) {
+    public GsonMutipartRequest(String url, @NonNull ParamMultipart paramMultipart,
+                               Class<T> clazz, Response.Listener<T> listener,
+                               Response.ErrorListener errorListener) {
         super(Method.POST, url, errorListener);
         this.mListener = listener;
         this.paramMultipart = paramMultipart;
@@ -48,14 +50,11 @@ public class GsonMutipartRequest<T> extends Request<T> {
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
         Map<String, String> headers = super.getHeaders();
-
         if (headers == null
                 || headers.equals(Collections.emptyMap())) {
             headers = new HashMap<String, String>();
         }
-
         headers.put("Accept", "application/json");
-
         return headers;
     }
 
@@ -65,7 +64,8 @@ public class GsonMutipartRequest<T> extends Request<T> {
     }
 
     private void buildMultipartEntity() {
-        mBuilder.addBinaryBody(paramMultipart.getParamFile(), paramMultipart.getFile(), paramMultipart.getContentType(), paramMultipart.getFile().getName());
+        mBuilder.addBinaryBody(paramMultipart.getParamFile(), paramMultipart.getFile(),
+                paramMultipart.getContentType(), paramMultipart.getFile().getName());
         mBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
         mBuilder.setLaxMode().setBoundary("xx").setCharset(Charset.forName("UTF-8"));
     }
@@ -81,7 +81,8 @@ public class GsonMutipartRequest<T> extends Request<T> {
         try {
             mBuilder.build().writeTo(bos);
         } catch (IOException e) {
-            VolleyLog.e("IOException writing to ByteArrayOutputStream bos, building the multipart request.");
+            VolleyLog.e("IOException writing to ByteArrayOutputStream bos," +
+                    " building the multipart request.");
         }
 
         return bos.toByteArray();

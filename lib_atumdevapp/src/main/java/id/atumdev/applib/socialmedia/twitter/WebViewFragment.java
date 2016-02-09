@@ -1,6 +1,7 @@
 package id.atumdev.applib.socialmedia.twitter;
 
 
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -55,7 +56,9 @@ public class WebViewFragment extends Fragment {
     public WebViewFragment() {
     }
 
-    public static WebViewFragment newInstance(final String consumerKey, final String consumerSecretKey, TwitterShareDialog.Payload payload) {
+    public static WebViewFragment newInstance(final String consumerKey,
+                                              final String consumerSecretKey,
+                                              TwitterShareDialog.Payload payload) {
         WebViewFragment fragment = new WebViewFragment();
         Bundle arguments = new Bundle();
 
@@ -79,10 +82,12 @@ public class WebViewFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.webview_fragment_layout, container, false);
 
-        final WindowManager wm = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
+        final WindowManager wm = (WindowManager) getActivity()
+                .getSystemService(Context.WINDOW_SERVICE);
         final Display display = wm.getDefaultDisplay();
         final ViewGroup.LayoutParams params = rootView.getLayoutParams();
         params.width = (int) (0.8 * display.getWidth());
@@ -138,6 +143,7 @@ public class WebViewFragment extends Fragment {
         public Void call(final String startUrl) {
             Log.d("WEB_FRAGMENT_LOG", "setupWebView: " + startUrl + " : " + Thread.currentThread());
             getActivity().runOnUiThread(new Runnable() {
+                @SuppressLint("SetJavaScriptEnabled")
                 @Override
                 public void run() {
                     try {
@@ -147,7 +153,8 @@ public class WebViewFragment extends Fragment {
                             @Override
                             public void onPageFinished(WebView view, String url) {
                                 if (!startUrl.equals(url)) {
-                                    view.loadUrl("javascript:console.log('HTMLOUT'+document.getElementsByTagName('html')[0].innerHTML);");
+                                    view.loadUrl("javascript:console.log('HTMLOUT'+document" +
+                                            ".getElementsByTagName('html')[0].innerHTML);");
                                 } else {
                                     setupWorkState();
                                 }
@@ -177,55 +184,59 @@ public class WebViewFragment extends Fragment {
         }
     };
 
-    private rx.Observable registrationToken = rx.Observable.create(new rx.Observable.OnSubscribe<String>() {
-        @Override
-        public void call(final Subscriber<? super String> subscriber) {
-            new Thread() {
+    private rx.Observable registrationToken = rx.Observable.create(
+            new rx.Observable.OnSubscribe<String>() {
                 @Override
-                public void run() {
-                    try {
-                        if (service != null) {
-                            requestToken = service.getRequestToken();
-                            service.getAuthorizationUrl(requestToken);
-                            Log.d("WEB_FRAGMENT_LOG", "questToken : " + requestToken);
-                            subscriber.onNext(service.getAuthorizationUrl(requestToken));
-                        } else {
-                            subscriber.onNext(null);
+                public void call(final Subscriber<? super String> subscriber) {
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            try {
+                                if (service != null) {
+                                    requestToken = service.getRequestToken();
+                                    service.getAuthorizationUrl(requestToken);
+                                    Log.d("WEB_FRAGMENT_LOG", "questToken : " + requestToken);
+                                    subscriber.onNext(service.getAuthorizationUrl(requestToken));
+                                } else {
+                                    subscriber.onNext(null);
+                                }
+                            } catch (OnErrorNotImplementedException ignore) {
+
+                            }
                         }
-                    } catch (OnErrorNotImplementedException ignore) {
-
-                    }
-                }
-            }.start();
-        }
-    });
-
-    private rx.Observable setupChromeCallback = Observable.create(new Observable.OnSubscribe<String>() {
-        @Override
-        public void call(final Subscriber<? super String> subscriber) {
-            Log.d("WEB_FRAGMENT_LOG", "setupChromeCallback thread: " + Thread.currentThread());
-            webView.setWebChromeClient(new WebChromeClient() {
-                @Override
-                public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
-                    Log.d("WEB_FRAGMENT_LOG", "onConsoleMessage");
-                    final Pattern pattern = Pattern.compile("<code>.*</code>");
-                    final String html = consoleMessage.message().substring(5);
-                    final Matcher matcher = pattern.matcher(html);
-                    if (matcher.find()) {
-                        setupProgressState();
-
-                        String verifyCode = matcher.group(0).replace("<code>", "").replace("</code>", "");
-                        subscriber.onNext(verifyCode);
-
-                    } else {
-                        setupWorkState();
-                    }
-
-                    return true;
+                    }.start();
                 }
             });
-        }
-    });
+
+    private rx.Observable setupChromeCallback = Observable.create(
+            new Observable.OnSubscribe<String>() {
+                @Override
+                public void call(final Subscriber<? super String> subscriber) {
+                    Log.d("WEB_FRAGMENT_LOG", "setupChromeCallback thread: " +
+                            Thread.currentThread());
+                    webView.setWebChromeClient(new WebChromeClient() {
+                        @Override
+                        public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+                            Log.d("WEB_FRAGMENT_LOG", "onConsoleMessage");
+                            final Pattern pattern = Pattern.compile("<code>.*</code>");
+                            final String html = consoleMessage.message().substring(5);
+                            final Matcher matcher = pattern.matcher(html);
+                            if (matcher.find()) {
+                                setupProgressState();
+
+                                String verifyCode = matcher.group(0).replace("<code>", "")
+                                        .replace("</code>", "");
+                                subscriber.onNext(verifyCode);
+
+                            } else {
+                                setupWorkState();
+                            }
+
+                            return true;
+                        }
+                    });
+                }
+            });
 
     private void verifyCode(String verifyCode) {
         Verifier verifier = new Verifier(verifyCode);
@@ -236,7 +247,8 @@ public class WebViewFragment extends Fragment {
 
     private void openSendMessageFragment() {
         final FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        final Fragment fragment = UpdateStatusFragment.newInstance(consumerKey, consumerSecretKey, payload);
+        final Fragment fragment = UpdateStatusFragment.newInstance(consumerKey,
+                consumerSecretKey, payload);
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
     }

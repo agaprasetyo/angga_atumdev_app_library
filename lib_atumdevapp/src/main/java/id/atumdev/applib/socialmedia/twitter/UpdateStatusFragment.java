@@ -51,7 +51,9 @@ public class UpdateStatusFragment extends Fragment {
     public UpdateStatusFragment() {
     }
 
-    public static UpdateStatusFragment newInstance(final String consumerKey, final String consumerSecretKey, TwitterShareDialog.Payload payload) {
+    public static UpdateStatusFragment newInstance(final String consumerKey,
+                                                   final String consumerSecretKey,
+                                                   TwitterShareDialog.Payload payload) {
         UpdateStatusFragment fragment = new UpdateStatusFragment();
         Bundle arguments = new Bundle();
 
@@ -75,10 +77,12 @@ public class UpdateStatusFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.update_status_layout, container, false);
 
-        final WindowManager wm = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
+        final WindowManager wm = (WindowManager) getActivity()
+                .getSystemService(Context.WINDOW_SERVICE);
         final Display display = wm.getDefaultDisplay();
         final ViewGroup.LayoutParams params = rootView.getLayoutParams();
         params.width = (int) (0.8 * display.getWidth());
@@ -189,9 +193,9 @@ public class UpdateStatusFragment extends Fragment {
                     twitter = TwitterFactory.getSingleton();
                 }
 
-                boolean isEmptyKeys = TextUtils.isEmpty(twitter.getConfiguration().getOAuthConsumerKey())
-                        || TextUtils.isEmpty(twitter.getConfiguration().getOAuthConsumerSecret());
-
+                boolean isEmptyKeys = TextUtils.isEmpty(twitter.getConfiguration()
+                        .getOAuthConsumerKey()) || TextUtils.isEmpty(twitter.getConfiguration()
+                        .getOAuthConsumerSecret());
                 if (isEmptyKeys) {
                     try {
                         twitter.setOAuthConsumer(consumerKey, consumerSecretKey);

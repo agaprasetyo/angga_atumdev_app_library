@@ -11,7 +11,8 @@ public class DeviceUtil {
     private static final String TAG = DeviceUtil.class.getSimpleName();
 
     public static String getIMEI(Context context) {
-        TelephonyManager tManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        TelephonyManager tManager = (TelephonyManager)
+                context.getSystemService(Context.TELEPHONY_SERVICE);
         return tManager.getDeviceId();
     }
 

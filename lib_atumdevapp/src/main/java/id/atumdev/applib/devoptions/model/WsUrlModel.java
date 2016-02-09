@@ -53,17 +53,18 @@ public class WsUrlModel implements Parcelable {
     }
 
     @SuppressWarnings("unused")
-    public static final Parcelable.Creator<WsUrlModel> CREATOR = new Parcelable.Creator<WsUrlModel>() {
-        @Override
-        public WsUrlModel createFromParcel(Parcel in) {
-            return new WsUrlModel(in);
-        }
+    public static final Parcelable.Creator<WsUrlModel> CREATOR =
+            new Parcelable.Creator<WsUrlModel>() {
+                @Override
+                public WsUrlModel createFromParcel(Parcel in) {
+                    return new WsUrlModel(in);
+                }
 
-        @Override
-        public WsUrlModel[] newArray(int size) {
-            return new WsUrlModel[size];
-        }
-    };
+                @Override
+                public WsUrlModel[] newArray(int size) {
+                    return new WsUrlModel[size];
+                }
+            };
 
     public class Builder {
         private String name;

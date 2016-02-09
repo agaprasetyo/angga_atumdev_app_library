@@ -16,8 +16,8 @@ public class DomainDataStore {
     private static final String PREFERENCE_ATUM_DEV_DOMAIN_URL = "PREFERENCE_ATUM_DEV_DOMAIN_URL";
 
     public static String getDomainUrl(Context context, @NonNull String defaultHost) {
-        String domainSaved = context.getSharedPreferences(PREFERENCE_ATUM_DEV_DOMAIN, Context.MODE_PRIVATE)
-                .getString(PREFERENCE_ATUM_DEV_DOMAIN_URL, defaultHost);
+        String domainSaved = context.getSharedPreferences(PREFERENCE_ATUM_DEV_DOMAIN,
+                Context.MODE_PRIVATE).getString(PREFERENCE_ATUM_DEV_DOMAIN_URL, defaultHost);
         URI uri;
         try {
             uri = new URI(domainSaved);

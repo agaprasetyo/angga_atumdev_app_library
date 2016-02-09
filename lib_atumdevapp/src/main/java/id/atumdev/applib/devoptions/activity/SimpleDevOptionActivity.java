@@ -106,7 +106,8 @@ public abstract class SimpleDevOptionActivity extends AppCompatActivity {
     private class OpenDomainOpt implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            startActivity(DomainDevOptionActivity.instanceIntent(SimpleDevOptionActivity.this, getDefaultDomain(), getWsUrlList()));
+            startActivity(DomainDevOptionActivity.instanceIntent(SimpleDevOptionActivity.this,
+                    getDefaultDomain(), getWsUrlList()));
         }
     }
 

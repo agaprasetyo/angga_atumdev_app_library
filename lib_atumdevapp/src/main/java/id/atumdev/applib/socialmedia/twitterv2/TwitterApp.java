@@ -106,10 +106,9 @@ public class TwitterApp {
                 int what = 1;
 
                 try {
-                    authUrl = mHttpOauthprovider.retrieveRequestToken(mHttpOauthConsumer, CALLBACK_URL);
-
+                    authUrl = mHttpOauthprovider.retrieveRequestToken(mHttpOauthConsumer,
+                            CALLBACK_URL);
                     what = 0;
-
                     Log.d(TAG, "Request token url " + authUrl);
                 } catch (Exception e) {
                     Log.d(TAG, "Failed to get request token");
@@ -136,7 +135,8 @@ public class TwitterApp {
                 try {
                     mHttpOauthprovider.retrieveAccessToken(mHttpOauthConsumer, verifier);
 
-                    mAccessToken = new AccessToken(mHttpOauthConsumer.getToken(), mHttpOauthConsumer.getTokenSecret());
+                    mAccessToken = new AccessToken(mHttpOauthConsumer.getToken(),
+                            mHttpOauthConsumer.getTokenSecret());
 
                     Log.d(TAG, "Token: " + mAccessToken.getToken());
 

@@ -19,7 +19,8 @@ public class PreferenceUtils {
     public static void saveTwitterAccessToken(final Context context, final AccessToken token) {
         Log.d("TEST_PREFERENCE", "save");
         if (context != null) {
-            final SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_TAG, Context.MODE_PRIVATE);
+            final SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_TAG,
+                    Context.MODE_PRIVATE);
             final SharedPreferences.Editor editor = preferences.edit();
             if (token != null) {
                 editor.putString(KEY_TAG, token.getToken());
@@ -28,15 +29,15 @@ public class PreferenceUtils {
                 editor.putString(KEY_TAG, null);
                 editor.putString(SECRET_KEY_TAG, null);
             }
-
-            editor.commit();
+            editor.apply();
         }
     }
 
     public static AccessToken restoreTwitterAccessToken(final Context context) {
         Log.d("TEST_PREFERENCE", "restore");
         if (context != null) {
-            final SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_TAG, Context.MODE_PRIVATE);
+            final SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_TAG,
+                    Context.MODE_PRIVATE);
             final String token = preferences.getString(KEY_TAG, null);
             final String secretToken = preferences.getString(SECRET_KEY_TAG, null);
             if (!TextUtils.isEmpty(token) && !TextUtils.isEmpty(secretToken)) {

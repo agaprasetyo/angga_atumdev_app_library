@@ -1,5 +1,7 @@
 package id.atumdev.applib.networkhandler.sslutils;
 
+import android.annotation.SuppressLint;
+
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
 
@@ -20,14 +22,15 @@ public class NukeSSLCerts {
             TrustManager[] trustAllCerts = new TrustManager[]{
                     new X509TrustManager() {
                         public X509Certificate[] getAcceptedIssuers() {
-                            X509Certificate[] myTrustedAnchors = new X509Certificate[0];
-                            return myTrustedAnchors;
+                            return new X509Certificate[0];
                         }
 
+                        @SuppressLint("TrustAllX509TrustManager")
                         @Override
                         public void checkClientTrusted(X509Certificate[] certs, String authType) {
                         }
 
+                        @SuppressLint("TrustAllX509TrustManager")
                         @Override
                         public void checkServerTrusted(X509Certificate[] certs, String authType) {
                         }
